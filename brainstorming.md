@@ -34,7 +34,7 @@
   3.  Netflix Clone
 
 ## New App Ideas - Evaluate and Categorize
-1. Netflix clone - FakeFlix
+1. Netflix clone - FlickFusion
     - **Category:** Enterntainment
    - **Mobile:** This is essential becuase it allows you to essntially have a TV in your pocket whenever you are out and bored. This can be used when your on work or when you are on break for work or waiting for class to start.
    - **Story:** This app allows you to have something to do on your downtime.Time fly's when your having fun right?
