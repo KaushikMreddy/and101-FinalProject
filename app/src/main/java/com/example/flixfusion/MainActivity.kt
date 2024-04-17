@@ -12,9 +12,6 @@ import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 
-import okhttp3.internal.http2.Header
-import org.json.JSONObject
-
 class MainActivity : AppCompatActivity() {
 
     private val BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWZiZDBlYjFlNjNhNjgwYzlmZTliMmE0ZjNkMGI3OCIsInN1YiI6IjY2MWYyMmQ4MjE2MjFiMDE0YWYwMWQwNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fvPIDllszfnxfL_pI75bCU1_stXN-I3yexaR7dKZW5E"
@@ -55,21 +52,22 @@ class MainActivity : AppCompatActivity() {
                 val movieList = mutableListOf<String>()
                 val posterPathList = mutableListOf<String>()
                 val originalLanguageList = mutableListOf<String>()
-                print(jsonResponse.getJSONArray(0))
 
-//                for (i in 0 until resultsArray.length()) {
-//                    val movieObject = resultsArray.js.getJSONObject(i)
-//                    val title = movieObject.getString("title")
-//                    val posterPath = movieObject.getString("poster_path")
-//                    val originalLanguage = movieObject.getString("original_language")
+                for ( i in 0 until jsonResponse.length()) {
+
+                    movieList.add(jsonResponse.getJSONObject(i).getString("original_title"))
+                    posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
+                    originalLanguageList.add(jsonResponse.getJSONObject(i).getString("original_language"))
+//                    val movieObject = jsonResponse.getJSONObject(i)
+//                    val originalTitle = movieObject.getString("original_title")
+//                    println("Original Title: $originalTitle")
+                }
+
+                val mainAdapter = MainRecyclerAdapter(posterPathList, movieList, originalLanguageList)
+                rvMain.adapter = mainAdapter
+                rvMain.layoutManager = LinearLayoutManager(this@MainActivity)
+
 //
-//                    movieList.add(title)
-//                    posterPathList.add(posterPath)
-//                    originalLanguageList.add(originalLanguage)
-//                }
-
-
-                // Here you can parse the JSON response and handle it accordingly
             }
 
             override fun onFailure(
