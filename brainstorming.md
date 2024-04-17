@@ -1,7 +1,7 @@
 ## New App ideas - List
 
 1. Netflix Clone: 
-    - application with OTT API with nested recycler views and styles (https://rapidapi.com/gox-ai-gox-ai-default/api/ott-details/)
+    - application with OTT API with nested recycler views and styles (https://developer.themoviedb.org/reference/intro/getting-started)
 
 2. Resume or Portfolio app: 
     - show my skills in a jiffy and make it look cooler than showing my resume
