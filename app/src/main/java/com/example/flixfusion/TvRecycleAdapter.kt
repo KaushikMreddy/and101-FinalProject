@@ -14,7 +14,6 @@ class TvRecycleAdapter(private val imgList: List<String>)  : RecyclerView.Adapte
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvImage: ImageView
 
-
         init {
             // Find our RecyclerView item's ImageView for future use
             tvImage = view.findViewById(R.id.tv_image)
