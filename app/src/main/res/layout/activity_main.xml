@@ -8,28 +8,43 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_netflix_short_logo"
-            android:contentDescription="@string/netflix_logo"
-            android:padding="16dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_search"
-            android:contentDescription="@string/search"
-            android:padding="16dp"
-            android:layout_gravity="end" />
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ff_logo"
+                android:contentDescription="@string/netflix_logo"
+                android:layout_alignParentStart="true"
+                android:paddingStart="16dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="128dp"
+                android:maxHeight="128dp"
+                android:scaleType="fitCenter"
+                android:layout_centerVertical="true" />
 
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"
+                android:contentDescription="@string/search"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="16dp"
+                android:adjustViewBounds="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
