@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
@@ -20,19 +19,29 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
     private val BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWZiZDBlYjFlNjNhNjgwYzlmZTliMmE0ZjNkMGI3OCIsInN1YiI6IjY2MWYyMmQ4MjE2MjFiMDE0YWYwMWQwNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fvPIDllszfnxfL_pI75bCU1_stXN-I3yexaR7dKZW5E"
 //    private lateinit var rvTopRated: RecyclerView
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         val mainImage: ImageView
-        val mainTextView: TextView
-        val langTextView: TextView
-        val rvTopRated: RecyclerView
-        val rvPop: RecyclerView
+        val actorTextView: TextView
+        val rvActor: RecyclerView
+        val animeTextView: TextView
+        val rvAnime: RecyclerView
+        val mvTextView: TextView
+        val rvMovie: RecyclerView
+        val tvTextView: TextView
+        val rvTV: RecyclerView
+
 
         init {
             // Find our RecyclerView item's ImageView for future use
             mainImage = view.findViewById(R.id.main_image)
-            mainTextView = view.findViewById(R.id.mainTextView)
-            langTextView = view.findViewById((R.id.langKeyTextView))
-            rvTopRated = view.findViewById(R.id.tr_recycler_view)
-            rvPop = view.findViewById(R.id.pr_recycler_view)
+            actorTextView = view.findViewById(R.id.actorTextView)
+            rvActor = view.findViewById(R.id.actor_recycler_view)
+            animeTextView = view.findViewById(R.id.animeTextView)
+            rvAnime = view.findViewById(R.id.anime_recycler_View)
+            mvTextView = view.findViewById(R.id.mvTextView)
+            rvMovie = view.findViewById(R.id.mv_recycler_view)
+            tvTextView = view.findViewById(R.id.tvTextView)
+            rvTV = view.findViewById(R.id.tv_recycler_view)
 
         }
     }
@@ -60,11 +69,13 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
 //            .into(holder.mainImage)
 //
 //        // Set the key value
-        holder.mainTextView.text = "Movie List"
+//        holder.mainTextView.text = "Movie List"
 //        holder.langTextView.text = lan.toString()
 
-        getPopularMovies1(BEARER_TOKEN, holder.rvTopRated)
-        getPopularMovies2(BEARER_TOKEN, holder.rvPop)
+        getActor(BEARER_TOKEN, holder.rvActor)
+        getAnime(BEARER_TOKEN, holder.rvAnime)
+        getTvShows(BEARER_TOKEN, holder.rvTV)
+        getMovies(BEARER_TOKEN, holder.rvMovie)
 
 
     }
@@ -76,7 +87,7 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
         return 1 // or any fixed count like 10
     }
 
-    private fun getPopularMovies1(token: String, rvTopRated: RecyclerView){
+    private fun getActor(token: String, rv: RecyclerView){
 
         val client = AsyncHttpClient()
         val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
@@ -95,17 +106,17 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
                 Log.d("Popular Movies Again", "response successful$json")
                 val jsonResponse = json.jsonObject.getJSONArray("results")
-                val movieList = mutableListOf<String>()
+
                 val posterPathList = mutableListOf<String>()
-                val originalLanguageList = mutableListOf<String>()
+
                 for ( i in 0 until jsonResponse.length()) {
-                    movieList.add(jsonResponse.getJSONObject(i).getString("original_title"))
+
                     posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
-                    originalLanguageList.add(jsonResponse.getJSONObject(i).getString("original_language"))
+
                 }
-                val trAdapter = TopRatedRecyclerAdapter(posterPathList, movieList, originalLanguageList)
-                rvTopRated.adapter = trAdapter
-                rvTopRated.layoutManager = LinearLayoutManager(rvTopRated.context, LinearLayoutManager.HORIZONTAL, false)
+                val acAdapter = ActorRecycleAdapter(posterPathList)
+                rv.adapter = acAdapter
+                rv.layoutManager = LinearLayoutManager(rv.context, LinearLayoutManager.HORIZONTAL, false)
             }
             override fun onFailure(
                 statusCode: Int,
@@ -113,12 +124,12 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
                 errorResponse: String,
                 throwable: Throwable?
             ) {
-                Log.d("Movies Error", errorResponse)
+                Log.d("Actor Error", errorResponse)
             }
         })
     }
 
-    private fun getPopularMovies2(token: String, rvTopRated: RecyclerView){
+    private fun getAnime(token: String, rv: RecyclerView){
 
         val client = AsyncHttpClient()
         val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
@@ -145,9 +156,93 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
                     posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
                     originalLanguageList.add(jsonResponse.getJSONObject(i).getString("original_language"))
                 }
-                val pAdapter = PopRecyclerViewAdapter(posterPathList, movieList, originalLanguageList)
-                rvTopRated.adapter = pAdapter
-                rvTopRated.layoutManager = LinearLayoutManager(rvTopRated.context, LinearLayoutManager.HORIZONTAL, false)
+                val pAdapter = AnimeRecycleAdapter(posterPathList)
+                rv.adapter = pAdapter
+                rv.layoutManager = LinearLayoutManager(rv.context, LinearLayoutManager.HORIZONTAL, false)
+            }
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                errorResponse: String,
+                throwable: Throwable?
+            ) {
+                Log.d("Anime Error", errorResponse)
+            }
+        })
+    }
+
+    private fun getTvShows(token: String, rv: RecyclerView){
+
+        val client = AsyncHttpClient()
+        val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
+        val params = RequestParams().apply {// This is needed to add the parameters in our API URL
+            put("include_adult", "false")
+            put("include_video", "false")
+            put("language", "en-US")
+            put("page", "1")
+            put("sort_by", "popularity.desc")
+        }
+        val headers = RequestHeaders().apply {// This is needed to add the headers for the API call
+            put("Authorization", "Bearer $token")
+            put("accept", "application/json")
+        }
+        client.get(url,  headers, params, object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
+                Log.d("Popular Movies Again", "response successful$json")
+                val jsonResponse = json.jsonObject.getJSONArray("results")
+
+                val posterPathList = mutableListOf<String>()
+
+                for ( i in 0 until jsonResponse.length()) {
+
+                    posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
+
+                }
+                val pAdapter = TvRecycleAdapter(posterPathList)
+                rv.adapter = pAdapter
+                rv.layoutManager = LinearLayoutManager(rv.context, LinearLayoutManager.HORIZONTAL, false)
+            }
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                errorResponse: String,
+                throwable: Throwable?
+            ) {
+                Log.d("TV Show Error", errorResponse)
+            }
+        })
+    }
+
+    private fun getMovies(token: String, rv: RecyclerView){
+
+        val client = AsyncHttpClient()
+        val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
+        val params = RequestParams().apply {// This is needed to add the parameters in our API URL
+            put("include_adult", "false")
+            put("include_video", "false")
+            put("language", "en-US")
+            put("page", "1")
+            put("sort_by", "popularity.desc")
+        }
+        val headers = RequestHeaders().apply {// This is needed to add the headers for the API call
+            put("Authorization", "Bearer $token")
+            put("accept", "application/json")
+        }
+        client.get(url,  headers, params, object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
+                Log.d("Popular Movies Again", "response successful$json")
+                val jsonResponse = json.jsonObject.getJSONArray("results")
+
+                val posterPathList = mutableListOf<String>()
+
+                for ( i in 0 until jsonResponse.length()) {
+
+                    posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
+
+                }
+                val pAdapter = MovieRecycleAdapter(posterPathList)
+                rv.adapter = pAdapter
+                rv.layoutManager = LinearLayoutManager(rv.context, LinearLayoutManager.HORIZONTAL, false)
             }
             override fun onFailure(
                 statusCode: Int,

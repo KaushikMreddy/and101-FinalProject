@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -12,56 +13,95 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="10dp"
-       />
-
-    <TextView
-        android:id="@+id/mainTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Key Value"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_image"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:id="@+id/langKeyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sample"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainTextView"
-        android:layout_marginTop="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tr_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/langKeyTextView"
-        android:layout_margin="10dp"
         />
 
     <TextView
-        android:id="@+id/border1TextView"
+        android:id="@+id/actorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Key Value"
+        android:layout_marginTop="8dp"
+        android:text="Trending Actors"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tr_recycler_view"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/main_image" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pr_recycler_view"
+        android:id="@+id/actor_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/border1TextView"
-        android:layout_margin="20dp" />
+        app:layout_constraintTop_toBottomOf="@+id/actorTextView" />
+
+    <TextView
+        android:id="@+id/animeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Awesome Anime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actor_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/anime_recycler_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animeTextView" />
+
+    <TextView
+        android:id="@+id/mvTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Movie List"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/anime_recycler_View" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mv_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mvTextView" />
+
+
+    <TextView
+        android:id="@+id/tvTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Newest TV Shows"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mv_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tv_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTextView" />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
