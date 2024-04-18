@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
@@ -56,21 +57,23 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-//        val context = holder.itemView.context
+        val context = holder.itemView.context
 //        val baseUrl = "https://image.tmdb.org/t/p/original"
-//        val imageUrl = baseUrl + imgList[position]
+        val imageUrl = "https://image.tmdb.org/t/p/original/qIKNIkxXYIro6JjNIGyqumrVUKL.jpg"
 //        val key = textList[position]
 //        val lan = langList[position]
 //
 //        // Load image using Glide
-//        Glide.with(context)
-//            .load(imageUrl)
-//            .centerCrop()
-//            .into(holder.mainImage)
+        Glide.with(context)
+            .load(imageUrl)
+            .centerCrop()
+            .into(holder.mainImage)
 //
 //        // Set the key value
 //        holder.mainTextView.text = "Movie List"
 //        holder.langTextView.text = lan.toString()
+
+
 
         getActor(BEARER_TOKEN, holder.rvActor)
         getAnime(BEARER_TOKEN, holder.rvAnime)

@@ -8,11 +8,12 @@
     <ImageView
         android:id="@+id/mv_image"
         android:layout_width="200dp"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="10dp"
+
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
