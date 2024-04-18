@@ -3,6 +3,7 @@ package com.example.flixfusion
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
@@ -20,8 +21,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         rvMain = findViewById(R.id.main_recycler_view)
+
+        // Locate the ImageView for the logo in the layout
+        val logoImageView = findViewById<ImageView>(R.id.ivLogo)
+
+        // Set a click listener on the logo ImageView
+        logoImageView.setOnClickListener {
+            // Scroll the RecyclerView to the top position
+            rvMain.smoothScrollToPosition(0)
+        }
 
         getPopularMovies(BEARER_TOKEN)
 
