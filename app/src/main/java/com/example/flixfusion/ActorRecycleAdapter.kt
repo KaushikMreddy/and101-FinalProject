@@ -8,14 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class ActorRecycleAdapter(private val imgList: List<String>) : RecyclerView.Adapter<ActorRecycleAdapter.ViewHolder>()  {
+class ActorRecycleAdapter(private val imgList: List<String>, private  val nameList: List<String>) : RecyclerView.Adapter<ActorRecycleAdapter.ViewHolder>()  {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val trImage: ImageView
+        val acText : TextView
 
         init {
             // Find our RecyclerView item's ImageView for future use
             trImage = view.findViewById(R.id.tr_image)
+            acText = view.findViewById(R.id.acTextView)
 
         }
     }
@@ -32,6 +34,7 @@ class ActorRecycleAdapter(private val imgList: List<String>) : RecyclerView.Adap
         val context = holder.itemView.context
         val baseUrl = "https://image.tmdb.org/t/p/original"
         val imageUrl = baseUrl + imgList[position]
+        val name = nameList[position]
 
 
         // Load image using Glide
@@ -39,6 +42,8 @@ class ActorRecycleAdapter(private val imgList: List<String>) : RecyclerView.Adap
             .load(imageUrl)
             .centerCrop()
             .into(holder.trImage)
+
+        holder.acText.text = name
 
 
     }

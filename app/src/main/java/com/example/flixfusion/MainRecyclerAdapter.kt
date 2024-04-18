@@ -90,13 +90,10 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
     private fun getActor(token: String, rv: RecyclerView){
 
         val client = AsyncHttpClient()
-        val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
+        val url = "https://api.themoviedb.org/3/person/popular" //This is the base URL (not secure yet)
         val params = RequestParams().apply {// This is needed to add the parameters in our API URL
-            put("include_adult", "false")
-            put("include_video", "false")
             put("language", "en-US")
             put("page", "1")
-            put("sort_by", "popularity.desc")
         }
         val headers = RequestHeaders().apply {// This is needed to add the headers for the API call
             put("Authorization", "Bearer $token")
@@ -104,17 +101,19 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
         }
         client.get(url,  headers, params, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
-                Log.d("Popular Movies Again", "response successful$json")
+                Log.d("Actors API Response", "response successful$json")
                 val jsonResponse = json.jsonObject.getJSONArray("results")
 
                 val posterPathList = mutableListOf<String>()
+                val actorNameList = mutableListOf<String>()
 
                 for ( i in 0 until jsonResponse.length()) {
 
-                    posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
+                    posterPathList.add(jsonResponse.getJSONObject(i).getString("profile_path"))
+                    actorNameList.add(jsonResponse.getJSONObject(i).getString("original_name"))
 
                 }
-                val acAdapter = ActorRecycleAdapter(posterPathList)
+                val acAdapter = ActorRecycleAdapter(posterPathList, actorNameList)
                 rv.adapter = acAdapter
                 rv.layoutManager = LinearLayoutManager(rv.context, LinearLayoutManager.HORIZONTAL, false)
             }
@@ -132,13 +131,12 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
     private fun getAnime(token: String, rv: RecyclerView){
 
         val client = AsyncHttpClient()
-        val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
+        val url = "https://api.themoviedb.org/3/search/collection" //This is the base URL (not secure yet)
         val params = RequestParams().apply {// This is needed to add the parameters in our API URL
+            put("query", "anime")
             put("include_adult", "false")
-            put("include_video", "false")
             put("language", "en-US")
             put("page", "1")
-            put("sort_by", "popularity.desc")
         }
         val headers = RequestHeaders().apply {// This is needed to add the headers for the API call
             put("Authorization", "Bearer $token")
@@ -146,15 +144,15 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
         }
         client.get(url,  headers, params, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
-                Log.d("Popular Movies Again", "response successful$json")
+                Log.d("Anime API Response", "response successful$json")
                 val jsonResponse = json.jsonObject.getJSONArray("results")
                 val movieList = mutableListOf<String>()
                 val posterPathList = mutableListOf<String>()
                 val originalLanguageList = mutableListOf<String>()
                 for ( i in 0 until jsonResponse.length()) {
-                    movieList.add(jsonResponse.getJSONObject(i).getString("original_title"))
+//                    movieList.add(jsonResponse.getJSONObject(i).getString("original_title"))
                     posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
-                    originalLanguageList.add(jsonResponse.getJSONObject(i).getString("original_language"))
+//                    originalLanguageList.add(jsonResponse.getJSONObject(i).getString("original_language"))
                 }
                 val pAdapter = AnimeRecycleAdapter(posterPathList)
                 rv.adapter = pAdapter
@@ -174,13 +172,9 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
     private fun getTvShows(token: String, rv: RecyclerView){
 
         val client = AsyncHttpClient()
-        val url = "https://api.themoviedb.org/3/discover/movie" //This is the base URL (not secure yet)
+        val url = "https://api.themoviedb.org/3/trending/tv/day"//This is the base URL (not secure yet)
         val params = RequestParams().apply {// This is needed to add the parameters in our API URL
-            put("include_adult", "false")
-            put("include_video", "false")
             put("language", "en-US")
-            put("page", "1")
-            put("sort_by", "popularity.desc")
         }
         val headers = RequestHeaders().apply {// This is needed to add the headers for the API call
             put("Authorization", "Bearer $token")
@@ -188,7 +182,7 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
         }
         client.get(url,  headers, params, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
-                Log.d("Popular Movies Again", "response successful$json")
+                Log.d("TV Shows API Response", "response successful$json")
                 val jsonResponse = json.jsonObject.getJSONArray("results")
 
                 val posterPathList = mutableListOf<String>()
@@ -230,7 +224,7 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
         }
         client.get(url,  headers, params, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
-                Log.d("Popular Movies Again", "response successful$json")
+                Log.d("Movies API Response", "response successful$json")
                 val jsonResponse = json.jsonObject.getJSONArray("results")
 
                 val posterPathList = mutableListOf<String>()
