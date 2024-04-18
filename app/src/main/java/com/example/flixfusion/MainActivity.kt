@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                     posterPathList.add(jsonResponse.getJSONObject(i).getString("poster_path"))
                     originalLanguageList.add(jsonResponse.getJSONObject(i).getString("original_language"))
                 }
-                val mainAdapter = MainRecyclerAdapter(posterPathList, movieList, originalLanguageList)
+                //val mainAdapter = MainRecyclerAdapter(posterPathList, movieList, originalLanguageList)
+                val mainAdapter = MainRecyclerAdapter()
                 rvMain.adapter = mainAdapter
                 rvMain.layoutManager = LinearLayoutManager(this@MainActivity)
             }

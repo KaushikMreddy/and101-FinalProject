@@ -36,14 +36,32 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tr_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/langKeyTextView"
-        android:layout_margin="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/border1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Key Value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tr_recycler_view"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pr_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/border1TextView"
+        android:layout_margin="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
