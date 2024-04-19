@@ -69,9 +69,10 @@ Required Feature
 <!-- Add picture of your hand sketched wireframes in this section -->
 <img src="https://ibb.co/dPq7jN1" width=600>
 
-### [BONUS] Digital Wireframes & Mockups : Uploaded in github
+### [BONUS] Digital Wireframes & Mockups : 
 
 ### [BONUS] Interactive Prototype
+![Mock_design (1)](https://github.com/KaushikMreddy/and101-FinalProject/assets/144624017/d1802626-09d3-479a-838c-e7c114cca0b9)
 
 ## Build Notes
 
