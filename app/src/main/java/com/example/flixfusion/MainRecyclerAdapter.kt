@@ -4,12 +4,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.BuildConfig
 import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
@@ -30,6 +33,8 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
         val rvMovie: RecyclerView
         val tvTextView: TextView
         val rvTV: RecyclerView
+        val playBtn: Button
+        val myListBtn: Button
 
 
         init {
@@ -43,6 +48,16 @@ class MainRecyclerAdapter () : RecyclerView.Adapter<MainRecyclerAdapter.ViewHold
             rvMovie = view.findViewById(R.id.mv_recycler_view)
             tvTextView = view.findViewById(R.id.tvTextView)
             rvTV = view.findViewById(R.id.tv_recycler_view)
+            playBtn = view.findViewById(R.id.button2)
+            myListBtn = view.findViewById(R.id.button3)
+
+            playBtn.setOnClickListener {
+                Toast.makeText(view.context, "Play clicked", Toast.LENGTH_SHORT).show()
+            }
+
+            myListBtn.setOnClickListener {
+                Toast.makeText(view.context, "Add to MyList clicked", Toast.LENGTH_SHORT).show()
+            }
 
         }
     }
