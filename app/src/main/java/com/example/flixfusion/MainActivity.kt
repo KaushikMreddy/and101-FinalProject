@@ -4,22 +4,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.Headers
 
 class MainActivity : AppCompatActivity() {
 
     private val BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWZiZDBlYjFlNjNhNjgwYzlmZTliMmE0ZjNkMGI3OCIsInN1YiI6IjY2MWYyMmQ4MjE2MjFiMDE0YWYwMWQwNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fvPIDllszfnxfL_pI75bCU1_stXN-I3yexaR7dKZW5E"
 
+    private lateinit var bottomNavView: BottomNavigationView
     private lateinit var rvMain: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        bottomNavView = findViewById(R.id.bottom_nav_view)
 
         rvMain = findViewById(R.id.main_recycler_view)
 
@@ -31,6 +36,30 @@ class MainActivity : AppCompatActivity() {
             // Scroll the RecyclerView to the top position
             rvMain.smoothScrollToPosition(0)
         }
+
+
+        // Set listener for bottom navigation items
+        bottomNavView.setOnItemSelectedListener   { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    // Handle home icon click
+                    Toast.makeText(this@MainActivity, "Home clicked", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.coming_soon -> {
+                    // Handle coming_soon icon click
+                    Toast.makeText(this@MainActivity, "Coming Soon clicked", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.downloads -> {
+                    // Handle downloads icon click
+                    Toast.makeText(this@MainActivity, "Downloads clicked", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         getPopularMovies(BEARER_TOKEN)
 
