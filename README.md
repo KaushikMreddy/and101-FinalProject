@@ -42,6 +42,15 @@ The following EXTRA features are implemented:
 
 ![FinVideo](https://github.com/KaushikMreddy/and101-FinalProject/assets/144624017/e1f9709b-e806-41d2-9cac-9ba226a30130)
 
+## Demo with Narration
+
+https://github.com/KaushikMreddy/and101-FinalProject/assets/144624017/9643c9cd-421d-45e4-85dd-e7e49a6e20bd
+
+## Youtube Link for the demo
+
+https://www.youtube.com/watch?v=Hh-7xZA-iTA
+
+
 
 
 
